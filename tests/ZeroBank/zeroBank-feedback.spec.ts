@@ -37,9 +37,6 @@ test.describe('Submit feedback', () => {
             'Test comment'
         )
         await feedbackPage.clickOnSendButton()
-
-        const feedbackTitle = await page.locator('#feedback-title')
-        await expect(feedbackTitle).toBeVisible()
-        await expect(page.getByText("They will be reviewed by our Customer Service staff and given the full attention that they deserve.")).toBeVisible();
+        await feedbackPage.assertFeedbackRecived()
     })
 })

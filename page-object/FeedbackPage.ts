@@ -8,6 +8,7 @@ export class FeedbackPage {
     readonly commentField: Locator
     readonly clearButton: Locator
     readonly sendButton: Locator
+    readonly feedbackTitle: Locator
 
     constructor(page: Page) {
         this.page = page
@@ -17,6 +18,7 @@ export class FeedbackPage {
         this.commentField = page.locator('#comment')
         this.clearButton = page.locator('input[name="clear"]')
         this.sendButton = page.locator('input[name="submit"]')
+        this.feedbackTitle = page.locator('#feedback-title')
     }
 
     //Methods for feedback
@@ -45,5 +47,10 @@ export class FeedbackPage {
         await expect(this.emailField).toBeEmpty()
         await expect(this.subjectField).toBeEmpty()
         await expect(this.commentField).toBeEmpty()
+    }
+
+    async assertFeedbackRecived() {
+        await expect(this.feedbackTitle).toBeVisible()
+        await expect(this.page.getByText("They will be reviewed by our Customer Service staff and given the full attention that they deserve.")).toBeVisible();
     }
 }
