@@ -1,15 +1,19 @@
 import { test, expect } from '@playwright/test'
+import { HomePage } from '../../page-object/HomePage'
+import { LoginPage } from '../../page-object/LoginPage'
+
+let homePage: HomePage
+let loginPage: LoginPage
 
 test.describe('Change money', () => {
     test.beforeEach(async ({ page }) => {
-        await page.goto('http://zero.webappsecurity.com/index.html')
-        await page.click('#signin_button')
-        await expect(page).toHaveTitle('Zero - Log in')
-        await page.fill('#user_login', 'username')
-        await page.fill('#user_password', 'password')
-        await page.click('input[type="submit"]')
-        await page.waitForLoadState('networkidle')
+        homePage = new HomePage(page)
+        loginPage = new LoginPage(page)
 
+        await homePage.visitHomepage()
+        await homePage.clickOnSignInButton()
+        await loginPage.login('username', 'password')
+        await page.waitForLoadState('networkidle')
         await page.goto('http://zero.webappsecurity.com/bank/pay-bills.html')
     })
 
