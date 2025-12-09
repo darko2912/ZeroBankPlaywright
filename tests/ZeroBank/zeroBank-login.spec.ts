@@ -68,4 +68,19 @@ test.describe('Positive test cases', () => {
 
         await homepage.signInButtonIsVisible()
     })
+
+    test.describe('Login snapshot', () => {
+        test('Login form snapshot', async ({ page }) => {
+            await homepage.visitHomepage()
+            await homepage.clickOnSignInButton()
+            await loginPage.loginFormScreenshot()
+        })
+
+        test('Error message snapshot', async ({ page }) => {
+            await homepage.visitHomepage()
+            await homepage.clickOnSignInButton()
+            await loginPage.login('uers', 'pass')
+            await loginPage.errorMessageScreenshot()
+        })
+    })
 })
