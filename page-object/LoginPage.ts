@@ -1,9 +1,9 @@
 import { expect, Locator, Page } from "@playwright/test";
+import { AbstractPage } from "./AbstractPage";
 
-export class LoginPage {
+export class LoginPage extends AbstractPage {
 
     //Define selectors
-    readonly page: Page
     readonly usernameField: Locator
     readonly passwordField: Locator
     readonly submitButton: Locator
@@ -11,7 +11,7 @@ export class LoginPage {
 
     //Init selectors
     constructor(page: Page) {
-        this.page = page
+        super(page)
         this.usernameField = page.locator('#user_login')
         this.passwordField = page.locator('#user_password')
         this.submitButton = page.locator('input[type="submit"]')

@@ -51,7 +51,7 @@ test.describe('Positive test cases', () => {
         await homepage.clickOnSignInButton()
         await homepage.assertTitleWeb()
         await loginPage.login('username', 'password')
-        await page.waitForLoadState('networkidle')
+        await loginPage.wait(3000)
 
         await page.goto('http://zero.webappsecurity.com/index.html')
         await homepage.signInButtonIsNotVisible()
@@ -61,7 +61,7 @@ test.describe('Positive test cases', () => {
         await homepage.clickOnSignInButton()
         await homepage.assertTitleWeb()
         await loginPage.login('username', 'password')
-        await page.waitForLoadState('networkidle')
+        await loginPage.wait(3000)
 
         await page.goto('http://zero.webappsecurity.com/index.html')
         await homepage.clickOnLogoutButton()
